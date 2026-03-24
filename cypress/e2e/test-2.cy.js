@@ -31,7 +31,8 @@ describe('Test-2', () => {
         //     .click()
         cy.addToCart('Sauce Labs Bike Light')
 
-        cy.get('[data-test="shopping-cart-badge"]').click()
+        // cy.get('[data-test="shopping-cart-badge"]').click()
+        cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
@@ -54,14 +55,16 @@ describe('Test-2', () => {
         //     .click()
         cy.addToCart('Sauce Labs Bike Light')
 
-        cy.get('[data-test="shopping-cart-badge"]').click()
+        // cy.get('[data-test="shopping-cart-badge"]').click()
+        cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
-        cy.get(checkoutPageElements.firstName).type('Ivan')
-        cy.get(checkoutPageElements.lastName).type('Ivanovic')
-        cy.get(checkoutPageElements.postalCode).type('11000')
-        cy.get('[data-test="continue"]').click()
+        // cy.get(checkoutPageElements.firstName).type('Ivan')
+        // cy.get(checkoutPageElements.lastName).type('Ivanovic')
+        // cy.get(checkoutPageElements.postalCode).type('11000')
+        // cy.get('[data-test="continue"]').click()
+        cy.formFill('Ivan', 'Ivanovic', '11000')
 
         cy.get('[data-test="finish"]').click()
 
@@ -75,7 +78,8 @@ describe('Test-2', () => {
         //     .click()
         cy.addToCart('Sauce Labs Bike Light')
 
-        cy.get('[data-test="shopping-cart-badge"]').click()
+        // cy.get('[data-test="shopping-cart-badge"]').click()
+        cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
@@ -97,7 +101,8 @@ describe('Test-2', () => {
         //     .click()
         cy.addToCart('Sauce Labs Bike Light')
 
-        cy.get('[data-test="shopping-cart-badge"]').click()
+        // cy.get('[data-test="shopping-cart-badge"]').click()
+        cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 

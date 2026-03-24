@@ -6,3 +6,7 @@ Cypress.Commands.add('addToCart', (cardName) => {
         .find('button')
         .click()
 })
+
+Cypress.Commands.add('cardBadgeClick', () => {
+    cy.get('[data-test="shopping-cart-badge"]').click()
+})
