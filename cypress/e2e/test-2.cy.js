@@ -27,14 +27,11 @@ describe('Test-2', () => {
     it('test-1', () => {
 
         cy.addToCart('Sauce Labs Bike Light')
-
         cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
-
         cy.formFill('Ivan', 'Ivanovic', '11000')
-
         cy.get('[data-test="finish"]').click()
 
         cy.get('[data-test="title"]').should('have.text', 'Checkout: Complete!')
@@ -45,15 +42,11 @@ describe('Test-2', () => {
 
 
         cy.addToCart('Sauce Labs Bike Light')
-
-
         cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
-
         cy.formFill('Ivan', 'Ivanovic', '11000')
-
         cy.get('[data-test="finish"]').click()
 
         cy.get('[data-test="complete-header"]').should('have.text', 'Thank you for your order!')
@@ -63,14 +56,11 @@ describe('Test-2', () => {
 
 
         cy.addToCart('Sauce Labs Bike Light')
-
         cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
-
         cy.formFill('Ivan', 'Ivanovic', '11000')
-
         cy.get('[data-test="finish"]').click()
 
         cy.get('[data-test="complete-text"]').should('have.text', 'Your order has been dispatched, and will arrive just as fast as the pony can get there!')
@@ -79,15 +69,11 @@ describe('Test-2', () => {
     it('test-4', () => {
 
         cy.addToCart('Sauce Labs Bike Light')
-
-
         cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
-
         cy.formFill('Ivan', 'Ivanovic', '11000')
-
         cy.get('[data-test="finish"]').click()
 
         cy.get('[data-test="back-to-products"]').click()
