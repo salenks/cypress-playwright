@@ -26,20 +26,13 @@ describe('Test-2', () => {
 
     it('test-1', () => {
 
-        // cy.contains(inventoryPageElements.inventoryItem, 'Sauce Labs Bike Light')
-        //     .find('button')
-        //     .click()
         cy.addToCart('Sauce Labs Bike Light')
 
-        // cy.get('[data-test="shopping-cart-badge"]').click()
         cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
-        // cy.get(checkoutPageElements.firstName).type('Ivan')
-        // cy.get(checkoutPageElements.lastName).type('Ivanovic')
-        // cy.get(checkoutPageElements.postalCode).type('11000')
-        // cy.get('[data-test="continue"]').click()
+
         cy.formFill('Ivan', 'Ivanovic', '11000')
 
         cy.get('[data-test="finish"]').click()
@@ -50,20 +43,15 @@ describe('Test-2', () => {
 
     it('test-2', () => {
 
-        // cy.contains('[data-test="inventory-item"]', 'Sauce Labs Bike Light')
-        //     .find('button')
-        //     .click()
+
         cy.addToCart('Sauce Labs Bike Light')
 
-        // cy.get('[data-test="shopping-cart-badge"]').click()
+
         cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
-        // cy.get(checkoutPageElements.firstName).type('Ivan')
-        // cy.get(checkoutPageElements.lastName).type('Ivanovic')
-        // cy.get(checkoutPageElements.postalCode).type('11000')
-        // cy.get('[data-test="continue"]').click()
+
         cy.formFill('Ivan', 'Ivanovic', '11000')
 
         cy.get('[data-test="finish"]').click()
@@ -73,20 +61,14 @@ describe('Test-2', () => {
 
     it('test-3', () => {
 
-        // cy.contains('[data-test="inventory-item"]', 'Sauce Labs Bike Light')
-        //     .find('button')
-        //     .click()
+
         cy.addToCart('Sauce Labs Bike Light')
 
-        // cy.get('[data-test="shopping-cart-badge"]').click()
         cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
-        // cy.get(checkoutPageElements.firstName).type('Ivan')
-        // cy.get(checkoutPageElements.lastName).type('Ivanovic')
-        // cy.get(checkoutPageElements.postalCode).type('11000')
-        // cy.get('[data-test="continue"]').click()
+
         cy.formFill('Ivan', 'Ivanovic', '11000')
 
         cy.get('[data-test="finish"]').click()
@@ -96,20 +78,14 @@ describe('Test-2', () => {
 
     it('test-4', () => {
 
-        // cy.contains('[data-test="inventory-item"]', 'Sauce Labs Bike Light')
-        //     .find('button')
-        //     .click()
         cy.addToCart('Sauce Labs Bike Light')
 
-        // cy.get('[data-test="shopping-cart-badge"]').click()
+
         cy.cardBadgeClick()
 
         cy.get('[data-test="checkout"]').click()
 
-        // cy.get(checkoutPageElements.firstName).type('Ivan')
-        // cy.get(checkoutPageElements.lastName).type('Ivanovic')
-        // cy.get(checkoutPageElements.postalCode).type('11000')
-        // cy.get('[data-test="continue"]').click()
+
         cy.formFill('Ivan', 'Ivanovic', '11000')
 
         cy.get('[data-test="finish"]').click()
