@@ -6,3 +6,7 @@ Cypress.Commands.add('formFill', (...arg) => {
     cy.get(checkoutPageElements.postalCode).type(arg[2])
     cy.get('[data-test="continue"]').click()
 })
+
+Cypress.Commands.add('finishClick', () => {
+    cy.get('[data-test="finish"]').click()
+})

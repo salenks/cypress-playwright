@@ -10,3 +10,7 @@ Cypress.Commands.add('addToCart', (cardName) => {
 Cypress.Commands.add('cardBadgeClick', () => {
     cy.get('[data-test="shopping-cart-badge"]').click()
 })
+
+Cypress.Commands.add('checkoutClick', () => {
+    cy.get('[data-test="checkout"]').click()
+})
