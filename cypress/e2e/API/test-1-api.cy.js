@@ -56,7 +56,7 @@ describe('Test-1-API', () => {
 
     })
 
-        it.only('test-3-mock-articles', () => {
+        it('test-3-mock-articles', () => {
 
         
 
