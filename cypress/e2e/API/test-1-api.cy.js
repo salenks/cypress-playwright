@@ -3,9 +3,9 @@
 describe('Test-1-API', () => {
     it('test-1', () => {
 
-        cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0').as('articles')
-        cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/tags').as('tags')
-        cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles/SuperArticle2-50107').as('article')
+        // cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0').as('articles')
+        // cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/tags').as('tags')
+        // cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles/SuperArticle2-50107').as('article')
 
         cy.visit('https://conduit.bondaracademy.com/login')
         cy.get('[placeholder="Email"]').type('salenks@gmail.com')
@@ -15,7 +15,7 @@ describe('Test-1-API', () => {
         // cy.wait(2000)
         // cy.get('[class="nav-link"]', { timeout: 10000 }).eq(2).click()
 
-        cy.wait('@articles').then( el => {
+        cy.wait('@articles').then(el => {
             console.log(el)
         })
 
@@ -27,7 +27,47 @@ describe('Test-1-API', () => {
         cy.get(':nth-child(4) > .form-control').type('SuperArticle2_Tag')
         cy.get('[class="btn btn-lg pull-xs-right btn-primary"]').click()
 
-        cy.wait('@article')
+        cy.wait('@article').then(element => {
+            console.log('API response', element)
+            expect(element.response.statusCode).to.eq(200)
+            expect(element.response.body.article.title).to.eq('SuperArticle2')
+        })
+
+    })
+
+    it('test-2-mock-tags', () => {
+
+        const newTags = {
+            "tags": [
+
+            ]
+        }
+
+        cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/tags', newTags).as('tags')
+
+        cy.visit('https://conduit.bondaracademy.com/login')
+        cy.get('[placeholder="Email"]').type('salenks@gmail.com')
+        cy.get('[placeholder="Password"]').type('ZajeCar1')
+        cy.get('[class="btn btn-lg btn-primary pull-xs-right"]').click()
+
+        cy.wait('@tags')
+
+        cy.get(cy.get('.sidebar > :nth-child(4)')).should('have.text', '')
+
+    })
+
+        it.only('test-3-mock-articles', () => {
+
+        
+
+        cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0', { fixture: 'articles.json' }).as('articles')
+
+        cy.visit('https://conduit.bondaracademy.com/login')
+        cy.get('[placeholder="Email"]').type('salenks@gmail.com')
+        cy.get('[placeholder="Password"]').type('ZajeCar1')
+        cy.get('[class="btn btn-lg btn-primary pull-xs-right"]').click()
+
+        cy.wait('@articles')
 
     })
 })
