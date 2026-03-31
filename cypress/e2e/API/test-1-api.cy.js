@@ -3,7 +3,7 @@
 describe('Test-1-API', () => {
     it('test-1', () => {
 
-        // cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0').as('articles')
+        cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0').as('articles')
         // cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/tags').as('tags')
         // cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles/SuperArticle2-50107').as('article')
 
