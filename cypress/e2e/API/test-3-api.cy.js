@@ -2,6 +2,7 @@
 
 
 describe('Test-3-API', () => {
+
     let creds;
 
     before(() => {
@@ -17,12 +18,9 @@ describe('Test-3-API', () => {
             }
         }
 
-        cy.request('POST', 'https://conduit.bondaracademy/api/users/login', {
+        cy.request('POST', 'https://conduit-api.bondaracademy.com/api/users/login', userCredentials).its('body').then(body => {
+            console.log(body)
 
-
+        })
     })
-
-    })
-
-
 })
