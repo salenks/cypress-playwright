@@ -3,7 +3,6 @@
 describe('Test-2-API', () => {
 
 
-
     it('articleCRUD', () => {
 
         cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0').as('articles')
@@ -39,69 +38,67 @@ describe('Test-2-API', () => {
             console.log(body.user.token)
             const token = body.user.token;
 
-
             cy.request({
                 method: 'POST',
                 url: 'https://conduit-api.bondaracademy.com/api/articles/',
                 headers: { 'Authorization': 'Token ' + token },
                 body: objectData
-            })
-                .then(object => {
-                    console.log('verifyObject', object.body.article.slug)
-                    const slug = object.body.article.slug;
+            }).then(object => {
+                console.log('verifyObject', object.body.article.slug)
+                const slug = object.body.article.slug;
+
+                cy.request({
+                    method: 'GET',
+                    url: `https://conduit-api.bondaracademy.com/api/articles/${slug}`,
+                    headers: { 'Authorization': 'Token ' + token }
+                }).then(object => {
+                    console.log('verifyObject', object)
+
+                    const articlePut = {
+                        "article": {
+                            "title": "API-create2-2-updated",
+                            "description": "Updating an article using API via Cypress",
+                            "body": "This is the article body that was updated.",
+                            "tagList": [
+                                "APInewTag2"
+                            ]
+                        }
+                    }
 
                     cy.request({
-                        method: 'GET',
+                        method: 'PUT',
                         url: `https://conduit-api.bondaracademy.com/api/articles/${slug}`,
-                        headers: { 'Authorization': 'Token ' + token }
-                    }).then(object => {
-                        console.log('verifyObject', object)
+                        headers: { 'Authorization': 'Token ' + token },
+                        body: articlePut
+                    }).then(res => {
+                        console.log('verifyArticlePut', res)
+                        expect(res.status).to.be.equal(200)
+                        expect(res.body.article.title).to.eq('API-create2-2-updated')
 
-                        const articlePut = {
-                            "article": {
-                                "title": "API-create2-2-updated",
-                                "description": "Updating an article using API via Cypress",
-                                "body": "This is the article body that was updated.",
-                                "tagList": [
-                                    "APInewTag2"
-                                ]
-                            }
-                        }
+                        const slug1 = res.body.article.slug;
+                        console.log('verifySlug', slug1)
 
                         cy.request({
-                            method: 'PUT',
-                            url: `https://conduit-api.bondaracademy.com/api/articles/${slug}`,
-                            headers: { 'Authorization': 'Token ' + token },
-                            body: articlePut
+                            method: 'DELETE',
+                            url: `https://conduit-api.bondaracademy.com/api/articles/${slug1}`,
+                            headers: { 'Authorization': 'Token ' + token }
                         }).then(res => {
-                            console.log('verifyArticlePut', res)
-                            expect(res.status).to.be.equal(200)
-                            expect(res.body.article.title).to.eq('API-create2-2-updated')
-
-                            const slug1 = res.body.article.slug;
-                            console.log('verifySlug', slug1)
+                            console.log('verifyArticleDelete', res);
+                            expect(res.status).to.be.equal(204)
 
                             cy.request({
-                                method: 'DELETE',
-                                url: `https://conduit-api.bondaracademy.com/api/articles/${slug1}`,
+                                method: 'GET',
+                                url: 'https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0',
                                 headers: { 'Authorization': 'Token ' + token }
                             }).then(res => {
-                                console.log('verifyArticleDelete', res);
-                                expect(res.status).to.be.equal(204)
-
-                                cy.request({
-                                    method: 'GET',
-                                    url: 'https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0',
-                                    headers: { 'Authorization': 'Token ' + token }
-                                }).then(res => {
-                                    console.log('verifyArticleGetAfterDelete', res);
-                                    expect(res.body.articles[0].title).not.to.eq('API-create2-2-updated')
-                                })
-
+                                console.log('verifyArticleGetAfterDelete', res);
+                                expect(res.body.articles[0].title).not.to.eq('API-create2-2-updated')
                             })
+
                         })
                     })
                 })
+            })
         })
     })
 })
