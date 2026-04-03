@@ -4,4 +4,3 @@ cypress/screenshots/
 .env
 cypress.env.json
 cypress/fixtures/conduit-credentials.json
-.gitignore
