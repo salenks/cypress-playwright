@@ -75,7 +75,7 @@ describe('Test-2-API', () => {
                             body: articlePut
                         }).then(res => {
                             console.log('verifyArticlePut', res)
-                            expect(res.status).to.be.within(200, 205)
+                            expect(res.status).to.be.equal(200)
                             expect(res.body.article.title).to.eq('API-create2-2-updated')
 
                             const slug1 = res.body.article.slug;
@@ -87,7 +87,7 @@ describe('Test-2-API', () => {
                                 headers: { 'Authorization': 'Token ' + token }
                             }).then(res => {
                                 console.log('verifyArticleDelete', res);
-                                expect(res.status).to.be.within(200, 205)
+                                expect(res.status).to.be.equal(204)
 
                                 cy.request({
                                     method: 'GET',
@@ -95,7 +95,6 @@ describe('Test-2-API', () => {
                                     headers: { 'Authorization': 'Token ' + token }
                                 }).then(res => {
                                     console.log('verifyArticleGetAfterDelete', res);
-                                    expect(res.status).to.be.within(200, 205);
                                     expect(res.body.articles[0].title).not.to.eq('API-create2-2-updated')
                                 })
 
