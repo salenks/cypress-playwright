@@ -2,6 +2,11 @@
 
 describe('Test-2-API', () => {
 
+    let creds;
+
+    before(() => {
+        cy.fixture('conduit-credentials').then(c => { creds = c })
+    })
 
     it('articleCRUD', () => {
 
@@ -18,8 +23,8 @@ describe('Test-2-API', () => {
 
         const userCredentials = {
             "user": {
-                "email": Cypress.env('email'),
-                "password": Cypress.env('password')
+                "email": creds.email,
+                "password": creds.password
             }
         }
 
