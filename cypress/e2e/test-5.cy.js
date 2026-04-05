@@ -1,18 +1,14 @@
 /// <reference types="cypress"/>
-
-import { loginPageElements } from "../support/POM/login/loginPageElements.js";
+import { randomCredentials } from "../support/POM/randomCredentials.js";
 // import { inventoryPageElements } from "../support/POM/inventory/inventoryPageElements.js";
-import { faker } from '@faker-js/faker';
 
-let creds;
-
-before(() => {
-    cy.fixture('saucedemo-credentials').then(c => { creds = c })
-})
 
 describe('Test-5', () => {
 
+    let creds;
+
     before(() => {
+        cy.fixture('saucedemo-credentials').then(c => { creds = c });
         cy.log('Before all tests')
     })
 
@@ -34,7 +30,7 @@ describe('Test-5', () => {
         cy.addToCart('Sauce Labs Bike Light')
         cy.cardBadgeClick()
         cy.checkoutClick()
-        cy.formFill(faker.person.firstName(), faker.person.lastName(), faker.location.zipCode())
+        cy.formFill(randomCredentials.firstName, randomCredentials.lastName, randomCredentials.zipCode)
         cy.finishClick()
         cy.get('[data-test="title"]').should('have.text', 'Checkout: Complete!')
     })
