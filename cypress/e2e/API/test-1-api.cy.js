@@ -7,11 +7,13 @@ describe('Test-1-API', () => {
     before(() => {
         cy.fixture('conduit-credentials').then(c => { creds = c })
     })
+
+    const baseApiUrl = Cypress.env('baseDevAPIUrl')
     it('test-1', () => {
 
-        cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0').as('articles')
-        // cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/tags').as('tags')
-        cy.intercept('GET', 'https://conduit-api.bondaracademy.com/api/articles/SuperArticle2-50107').as('article')
+        cy.intercept('GET', `${baseApiUrl}/api/articles?limit=10&offset=0`).as('articles')
+        // cy.intercept('GET', `${baseApiUrl}/api/tags`).as('tags')
+        cy.intercept('GET', `${baseApiUrl}/api/articles/SuperArticle2-50107`).as('article')
 
         cy.visit('https://conduit.bondaracademy.com/login')
         cy.get('[placeholder="Email"]').type(creds.email)

@@ -36,3 +36,25 @@ Cypress.Commands.add('clickSidenav', (button) => {
 
     cy.contains(button).click()
 })
+
+Cypress.Commands.add('loginAPI', (email, password, url) => {
+        const userCredentials = {
+            "user": {
+                "email": email,
+                "password": password
+            }
+        }
+
+        cy.request('POST', 'https://conduit-api.bondaracademy.com/api/users/login', userCredentials).its('body').then(body => {
+            console.log(body)
+            const token = body.user.token;
+
+
+            cy.visit(url, {
+                onBeforeLoad(win) {
+                    win.localStorage.setItem('jwtToken', token);
+                }
+
+            })
+        })
+    })

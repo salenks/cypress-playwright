@@ -9,18 +9,29 @@ describe('Test-3-API', () => {
         cy.fixture('conduit-credentials').then(c => { creds = c })
     })
 
+
     it('test-1', () => {
 
-        const userCredentials = {
-            "user": {
-                "email": creds.email,
-                "password": creds.password
-            }
-        }
+        //     const userCredentials = {
+        //         "user": {
+        //             "email": creds.email,
+        //             "password": creds.password
+        //         }
+        //     }
 
-        cy.request('POST', 'https://conduit-api.bondaracademy.com/api/users/login', userCredentials).its('body').then(body => {
-            console.log(body)
+        //     cy.request('POST', 'https://conduit-api.bondaracademy.com/api/users/login', userCredentials).its('body').then(body => {
+        //         console.log(body)
+        //         const token = body.user.token;
 
-        })
+
+        //         cy.visit('https://conduit.bondaracademy.com/api/articles/API-create-50107', {
+        //             onbeforeload(win) {
+        //                 win.localStorage.setItem('jwtToken', token);
+        //             }
+
+        //         })
+        //     })
+
+        cy.loginAPI(creds.email, creds.password, 'https://conduit.bondaracademy.com/article/API-create-50107')
     })
 })
