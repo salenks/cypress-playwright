@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test-run": "cypress run"
+    "test-run": "cypress run",
+    "test-1-api": "cypress run --spec cypress/e2e/API/test-1-api.cy.js"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",
