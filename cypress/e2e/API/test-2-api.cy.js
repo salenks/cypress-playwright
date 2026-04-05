@@ -14,8 +14,8 @@ describe('Test-2-API', () => {
 
 
         cy.visit('https://conduit.bondaracademy.com/login')
-        cy.get('[placeholder="Email"]').type(Cypress.env('email'))
-        cy.get('[placeholder="Password"]').type(Cypress.env('password'))
+        cy.get('[placeholder="Email"]').type(creds.email)
+        cy.get('[placeholder="Password"]').type(creds.password)
         cy.get('[class="btn btn-lg btn-primary pull-xs-right"]').click()
 
         cy.wait('@articles')
