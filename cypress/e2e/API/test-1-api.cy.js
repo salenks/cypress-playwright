@@ -8,13 +8,41 @@ describe('Test-1-API', () => {
         cy.fixture('conduit-credentials').then(c => { creds = c })
     })
 
+    beforeEach(() => {
+        const userCredentials = {
+            "user": {
+                "email": creds.email,
+                "password": creds.password
+            }
+        }
+
+        cy.request('POST', 'https://conduit-api.bondaracademy.com/api/users/login', userCredentials).its('body').then(res => {
+            const token = res.user.token;
+            cy.request({
+                method: 'GET',
+                url: 'https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0',
+                headers: { 'Authorization': 'Token ' + token }
+            }).then(res => {
+                const apiCreateArticle = res.body.articles.find(article => article.title === 'SuperArticle2')
+                if (apiCreateArticle) {
+                    cy.request({
+                        method: 'DELETE',
+                        url: `https://conduit-api.bondaracademy.com/api/articles/${apiCreateArticle.slug}`,
+                        headers: { 'Authorization': 'Token ' + token }
+                    }).then(res => {
+                        expect(res.status).to.eq(204)
+                    })
+                }
+            })
+        })
+    })
 
     it('test-1', () => {
 
 
         cy.intercept('GET', `${creds.baseApiUrl}/api/articles?limit=10&offset=0`).as('articles')
         // cy.intercept('GET', `${creds.baseApiUrl}/api/tags`).as('tags')
-        cy.intercept('GET', `${creds.baseApiUrl}/api/articles/SuperArticle2-50107`).as('article')
+        cy.intercept('GET', `${creds.baseApiUrl}/api/articles/SuperArticle2**`).as('article')
 
         cy.visit('https://conduit.bondaracademy.com/login')
         cy.get('[placeholder="Email"]').type(creds.email)
