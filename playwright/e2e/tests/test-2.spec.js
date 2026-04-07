@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+const {login, selectCard} = require('../support/helpers')
 
 test.describe('My first test suite', () => {
 
@@ -7,10 +8,11 @@ test.describe('My first test suite', () => {
     })
 
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://www.saucedemo.com/')
-        await page.locator('[data-test="username"]').fill(process.env.SAUCE_USER_STANDARD || '')
-        await page.locator('[data-test="password"]').fill(process.env.SAUCE_PASSWORD || '')
-        await page.locator('[data-test="login-button"]').click()
+        // await page.goto('https://www.saucedemo.com/')
+        // await page.locator('[data-test="username"]').fill(process.env.SAUCE_USER_STANDARD || '')
+        // await page.locator('[data-test="password"]').fill(process.env.SAUCE_PASSWORD || '')
+        // await page.locator('[data-test="login-button"]').click()
+        await login(page, process.env.SAUCE_USER_STANDARD || '', process.env.SAUCE_PASSWORD || '')
     })
 
     test.afterEach(async () => {

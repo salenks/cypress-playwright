@@ -1,3 +1,4 @@
+# Cypress
 node_modules/
 cypress/videos/
 cypress/screenshots/
@@ -5,5 +6,12 @@ cypress/screenshots/
 cypress.env.json
 cypress/fixtures/conduit-credentials.json
 cypress/reports/
-cypress/screenshots/
-cypress/videos/
+
+# Playwright
+playwright/node_modules/
+playwright/test-results/
+playwright/playwright-report/
+playwright/blob-report/
+playwright/.cache/
+playwright/.auth/
+playwright/.env
