@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 const {login, selectCard} = require('../support/helpers')
 
-test.describe('My first test suite', () => {
+test.describe('My second test suite', () => {
 
     test.beforeAll(async () => {
         console.log('This will run before all tests')

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { login } from '../support/helpers'
 
-test.describe('My first test suite', () => {
+test.describe('My sixth test suite', () => {
 
     test.beforeEach(async ({ page }) => {
         await login(page, process.env.SAUCE_USER_STANDARD || '', process.env.SAUCE_PASSWORD || '')
