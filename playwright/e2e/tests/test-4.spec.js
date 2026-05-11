@@ -27,7 +27,7 @@ test.describe('My fourth test suite', () => {
         console.log('priceList:',priceList)
         console.log('list:',list)
 
-        for(let i = 0; i < priceList.count(); i++) {
+        for(let i = 0; i < count; i++) {
             await expect(priceList.nth(i)).toHaveText(list[i])
         }
 

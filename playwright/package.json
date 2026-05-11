@@ -1,5 +1,5 @@
 {
-  "name": "pw-13",
+  "name": "saucedemo-playwright-e2e",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",
     "@playwright/test": "^1.59.1",

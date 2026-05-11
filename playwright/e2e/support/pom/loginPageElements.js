@@ -6,4 +6,4 @@ const loginPageElements = {
 
 }
 
-module.exports = { loginPageElements }
+export { loginPageElements }

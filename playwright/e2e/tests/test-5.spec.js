@@ -8,7 +8,7 @@ test.describe('My fifth test suite', () => {
     });
 
     test('test-1', async ({ page }) => {
-        await expect(page.locator('[id="react-burger-menu-btn"]')).click()
+        await page.locator('[id="react-burger-menu-btn"]').click()
 
         const menuWrap = page.locator('[class="bm-menu-wrap"]')
         const areaHidden = await menuWrap.getAttribute('aria-hidden')

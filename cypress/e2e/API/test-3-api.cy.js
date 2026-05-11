@@ -33,7 +33,7 @@ describe('Test-3-API', () => {
         //     })
 
         cy.loginAPI(creds.email, creds.password, 'https://conduit.bondaracademy.com/article/API-create-50107')
-        cy.get('h1').should('have.text', 'API-create')
+        cy.get('h1').should('have.text', 'SuperArticle1')
         cy.get('.card-footer > .btn').should('have.text', ' Post Comment ')
         cy.get('.article-actions > app-article-meta > .article-meta > :nth-child(1) > img').should('be.visible')
     })
