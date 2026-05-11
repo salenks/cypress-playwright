@@ -39,7 +39,7 @@ describe('Test-3', () => {
         })
     })
 
-    it.only('test-4', () => {
+    it('test-4', () => {
         cy.get('[data-test="inventory-item"]').find('button').each((buttonList) => {
             cy.wrap(buttonList).click()
         })
