@@ -11,12 +11,20 @@
     "test-run": "cypress run",
     "test-1-api": "cypress run --spec cypress/e2e/API/test-1-api.cy.js",
     "test-all-api": "cypress run --spec cypress/e2e/API/*.cy.js",
-    "test-all-e2e": "cypress run --spec cypress/e2e/*.cy.js"
+    "test-all-e2e": "cypress run --spec cypress/e2e/*.cy.js",
+    "test-cucumber": "cypress run --spec cypress/e2e/**/*.feature"
   },
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^24.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
     "@faker-js/faker": "^10.4.0",
     "cypress": "^15.13.0",
     "cypress-mochawesome-reporter": "^4.0.2",
+    "esbuild": "^0.28.0",
     "eslint": "^10.0.3"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": "cypress/e2e/step_definitions/**/*.js"
   }
 }
